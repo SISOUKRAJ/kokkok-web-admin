@@ -1,13 +1,14 @@
-import React from "react";
-import { Form, Input, Button, Row } from 'antd';
+import React, { useContext } from "react";
+import { Form, Input, Button, InputNumber, message } from 'antd';
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ScreenContext } from "../context/index";
 import "./index.css";
 import 'antd/dist/antd.css';
 
 const Login_page = () => {
+    const { setScreen } = useContext(ScreenContext);
     localStorage.setItem('token', "");
-    localStorage.setItem('index', "login");
 
     const navigate = useNavigate();
 
@@ -20,12 +21,12 @@ const Login_page = () => {
         await Axios.post("http://115.84.76.134:3000/api/v1/user/login", body)
             .then(res => {
                 // console.log(res.data.data);
-                localStorage.setItem('index', "dashboard");
+                setScreen("dashboard");
                 localStorage.setItem('token', res.data.data.access_token);
                 navigate('/dashboard');
             }).catch(err => {
                 console.log(err);
-                alert("Incorrect Phone or Password")
+                message.error('Incorrect Phone or Password');
             })
     };
 
@@ -58,7 +59,11 @@ const Login_page = () => {
                             ]}
 
                         >
-                            <Input
+                            <InputNumber
+                                style={{
+                                    width: "100%",
+                                    padding: "10px 15px ",
+                                }}
                                 placeholder="Phone"
                             />
                         </Form.Item>
