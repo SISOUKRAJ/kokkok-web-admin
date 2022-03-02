@@ -1,0 +1,32 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.navItem {
+  color: white;
+  padding: 13px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.navItem:hover {
+  color: white !important;
+}
+
+.navIcon {
+  padding-right: 10px !important;
+  width: 20px;
+  height: 100%;
+}
+
+.dropdownLogout {
+  margin: 5px !important;
+  border: none !important;
+}
