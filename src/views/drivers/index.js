@@ -1,8 +1,29 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Row, Col, Form, Input, Select, DatePicker, Button } from "antd"
+import TableDrivers from "./table"
+import axios from "axios";
 import './index.css';
 
-const drivers = () => {
+const Drivers = () => {
+    const [allDrivers, setAllDrivers] = useState([]);
+    const getDrivers = async () => {
+        await axios.get("http://115.84.76.134:3000/api/v1/admin/driver",
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+            .then(res => {
+                setAllDrivers(res.data.data);
+                // console.log(res.data.data);
+            })
+            .catch((err) => console.log(err))
+    }
+
+    useEffect(() => {
+        getDrivers();
+    }, []);
+
     return (
         <div>
             <Row style={{ padding: 10 }}>
@@ -10,7 +31,7 @@ const drivers = () => {
                     <h2 style={{ color: "orange", padding: 10 }}>Drivers</h2>
                 </Col>
                 <Col md={16}>
-                    <div className="formBox">
+                    <div className="formDriverBox">
                         <Form
                             layout="horizontal"
                             size="default"
@@ -61,8 +82,11 @@ const drivers = () => {
                     </div>
                 </Col>
             </Row>
+            <div style={{ padding: 10 }}>
+                <TableDrivers allDrivers={!!allDrivers && allDrivers} />
+            </div>
         </div>
     )
 }
 
-export default drivers
+export default Drivers

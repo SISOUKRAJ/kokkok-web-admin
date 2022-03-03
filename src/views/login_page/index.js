@@ -14,7 +14,7 @@ const Login_page = () => {
 
     const onFinish = async (values) => {
         const body = {
-            phone: parseInt(values.phone),
+            phone: values.phone,
             password: values.password
         }
         // console.log(body);
