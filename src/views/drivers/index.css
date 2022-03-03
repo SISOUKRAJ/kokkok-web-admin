@@ -1,0 +1,57 @@
+.formBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.searchBox {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.searchInput {
+  padding: 5px 15px !important;
+  width: 200px !important;
+  border: none !important;
+}
+.selectInput {
+  width: 200px !important;
+  border: none !important;
+}
+.dateInput {
+  width: 200px !important;
+  border: none !important;
+}
+.resetButton {
+  color: orange;
+  padding: 0px 10px;
+}
+.amountBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.amountItem {
+  padding: 10px;
+}
+.registerBox {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.registerButton {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
