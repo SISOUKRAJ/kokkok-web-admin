@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Row, Col, Form, Input, Select, DatePicker, Button } from "antd"
+import { Link } from "react-router-dom";
+import { ScreenContext } from "../../views/context";
 import TableDrivers from "./table"
 import axios from "axios";
 import './index.css';
 
 const Drivers = () => {
+    const { setScreen } = useContext(ScreenContext);
     const [allDrivers, setAllDrivers] = useState([]);
     const getDrivers = async () => {
         await axios.get("http://115.84.76.134:3000/api/v1/admin/driver",
@@ -65,20 +68,23 @@ const Drivers = () => {
                         </Form>
                     </div>
                     <div className="amountBox">
-                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "orange" }}>0</strong> </h3>
+                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "orange" }}>{allDrivers.length}</strong> </h3>
                         <h3 className="amountItem">On Trips Drivers: <strong style={{ color: "orange" }}>0</strong> </h3>
                         <h3 className="amountItem">Active Drivers: <strong style={{ color: "orange" }}>0</strong> </h3>
                     </div>
                 </Col>
                 <Col md={4}>
                     <div className="registerBox">
-                        <Button type="primary"
-                            // icon={<DownloadOutlined />} 
-                            // size={size}
-                            className="registerButton"
-                        >
-                            Register
-                        </Button>
+                        <Link to="/register">
+                            <Button type="primary"
+                                // icon={<DownloadOutlined />} 
+                                // size={size}
+                                className="registerButton"
+                                onClick={() => setScreen("register")}
+                            >
+                                Register
+                            </Button>
+                        </Link>
                     </div>
                 </Col>
             </Row>

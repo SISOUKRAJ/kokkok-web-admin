@@ -1,3 +1,12 @@
-.ant-table-thead {
-  color: orange !important;
+thead.ant-table-thead > tr > th {
+  background-color: orange !important;
+  color: white;
+  text-align: center;
+}
+
+.tableImages {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
