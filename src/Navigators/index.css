@@ -5,9 +5,24 @@ nav {
   align-items: center;
 }
 
+.NavigatorHeader {
+  width: 100%;
+  height: 10vh;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.NavigatorBody {
+  width: 100%;
+  height: 63px;
+  background-color: black;
+}
+
 .navItem {
   color: white;
-  padding: 13px;
+  padding: 10px;
   margin: 10px;
   border-radius: 10px;
   display: flex;

@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import {
     Routes,
     Route,
 } from "react-router-dom";
-import { ScreenContext } from "./views/context/index";
 
 import Navigators from "./Navigators";
+import Footer from "./Footer";
 import Home from "./views/Home_page/index";
 import LoginPage from "./views/login_page/index";
 import Errors from "./views/Errors_page/index";
@@ -13,9 +13,9 @@ import Drivers from "./views/drivers/index";
 import Passengers from "./views/passengers/index";
 import Notifications from "./views/notifications";
 import Reports from "./views/reports/index";
+import RegisterDriver from "./views/drivers/Register/index";
+
 const AppNavigator = () => {
-    const { screen } = useContext(ScreenContext);
-    // console.log(screen);
 
     return (
         <div>
@@ -29,7 +29,10 @@ const AppNavigator = () => {
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/reports" element={<Reports />} />
                 <Route path="*" element={<Errors />} />
+                <Route path="/register" element={<RegisterDriver />} />
             </Routes>
+
+            <Footer />
         </div>
 
     );

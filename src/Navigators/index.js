@@ -5,16 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ScreenContext } from "../views/context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIdCard, faHome, faUser, faBell, faChartLine } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard, faHome, faUser, faBell, faChartLine, faGear } from '@fortawesome/free-solid-svg-icons'
 import "./index.css"
 
 const nav = [
-    // {
-    //     link: "",
-    //     name: "login",
-    //     label: "Log in",
-    //     icon: "",
-    // },
     {
         link: "dashboard",
         name: "dashboard",
@@ -40,6 +34,12 @@ const nav = [
         icon: faBell,
     },
     {
+        link: "setting",
+        name: "setting",
+        label: "Setting",
+        icon: faGear,
+    },
+    {
         link: "reports",
         name: "reports",
         label: "Reports",
@@ -63,6 +63,7 @@ const Navigators = () => {
         // console.log('click', e);
         navigate('/');
         setScreen("login");
+        localStorage.setItem("screen", screen);
     }
     return (
         <div>
@@ -101,7 +102,10 @@ const Navigators = () => {
                                 key={index}
                                 className="navItem"
                                 to={`/${item.link}`}
-                                onClick={() => setScreen(item.name)}
+                                onClick={() => {
+                                    setScreen(item.name);
+                                    localStorage.setItem("screen", item.name);
+                                }}
                             >
                                 <FontAwesomeIcon icon={item.icon} className="navIcon" /> {item.label}
                             </Link>
@@ -109,8 +113,6 @@ const Navigators = () => {
                     </nav>
                 </div>
             }
-
-
         </div >
     )
 }

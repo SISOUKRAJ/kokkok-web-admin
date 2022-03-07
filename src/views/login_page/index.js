@@ -4,7 +4,6 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ScreenContext } from "../context/index";
 import "./index.css";
-import 'antd/dist/antd.css';
 
 const Login_page = () => {
     const { setScreen } = useContext(ScreenContext);
@@ -12,9 +11,18 @@ const Login_page = () => {
 
     const navigate = useNavigate();
 
+    const runTimeLogOut = () => {
+        setTimeout(() => {
+            alert("You have been logged out");
+            navigate('/');
+            setScreen("login");
+            // localStorage.setItem("screen", "");
+        }, 1000 * 60 * 60);
+    }
+
     const onFinish = async (values) => {
         const body = {
-            phone: parseInt(values.phone),
+            phone: values.phone,
             password: values.password
         }
         // console.log(body);
@@ -24,6 +32,7 @@ const Login_page = () => {
                 setScreen("dashboard");
                 localStorage.setItem('token', res.data.data.access_token);
                 navigate('/dashboard');
+                runTimeLogOut();
             }).catch(err => {
                 console.log(err);
                 message.error('Incorrect Phone or Password');
