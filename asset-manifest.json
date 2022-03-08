@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SISOUKRAJ/kokkok-web-admin.git/static/css/main.47c41c13.css",
-    "main.js": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.a0277e9f.js",
+    "main.js": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.1eb634dd.js",
     "index.html": "/SISOUKRAJ/kokkok-web-admin.git/index.html",
     "main.47c41c13.css.map": "/SISOUKRAJ/kokkok-web-admin.git/static/css/main.47c41c13.css.map",
-    "main.a0277e9f.js.map": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.a0277e9f.js.map"
+    "main.1eb634dd.js.map": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.1eb634dd.js.map"
   },
   "entrypoints": [
     "static/css/main.47c41c13.css",
-    "static/js/main.a0277e9f.js"
+    "static/js/main.1eb634dd.js"
   ]
 }
