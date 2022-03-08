@@ -2,6 +2,7 @@ import React from "react"
 import { Row, Col, Form, Input, InputNumber, DatePicker, Select, Upload, Button } from "antd"
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import "./index.css"
+import moment from "moment";
 
 const user_form = [
     {
@@ -105,12 +106,17 @@ const car_form = [
     }
 ]
 
-const doc_form = [{}]
+const doc_form = [
+    { label: "Profile", name: "profile" },
+    { label: "Identity card", name: "identity_card" },
+    { label: "Driver license", name: "driving_license" },
+    { label: "contract", name: "contract" },
+]
 
 const registerDriver = () => {
 
     const normFile = (e) => {
-        console.log('Upload event:', e);
+        // console.log('Upload event:', e.file);
 
         if (Array.isArray(e)) {
             return e;
@@ -120,7 +126,15 @@ const registerDriver = () => {
     };
 
     const onFinish = (values) => {
-        console.log("data: ", values);
+
+        const body = {
+            ...values,
+            birthday: moment(values.birthday._d).format("DD/MM/YYYY"),
+            profile: values.profile[0],
+            identity_card: values.identity_card[0],
+            driver_license: values.driver_license[0],
+        }
+        // console.log("data: ", body);
     };
 
     return (
@@ -245,8 +259,6 @@ const registerDriver = () => {
                                             {item.Option.map((option, index) =>
                                                 <Select.Option key={index} value={option.value}>{option.label}</Select.Option>
                                             )}
-                                            {/* <Select.Option value="Male">Male</Select.Option>
-                                        <Select.Option value="FeMale">FeMale</Select.Option> */}
                                         </Select>
                                     </Form.Item>
                                     : item.type === "number" ?
@@ -266,25 +278,34 @@ const registerDriver = () => {
                                         :
                                         null
                         )}
-                        {/* 
-                       
-                        
-                        <Form.Item label="Fee" required >
-                            <Input placeholder="50.000" />
-                        </Form.Item> */}
                     </Col>
                     <Col md={8} className="inputSection">
-                        <Form.Item
+                        {doc_form.map((item, index) =>
+                            <Form.Item
+                                key={index}
+                                name={item.name}
+                                label={item.label}
+                                valuePropName="fileList"
+                                getValueFromEvent={normFile}
+                            // extra="longgggggggggggggggggggggggggggggggggg"
+                            >
+                                <Upload name="logo" action="/upload.do" listType="picture">
+                                    <Button icon={<UploadOutlined />}>Click to upload</Button>
+                                </Upload>
+                            </Form.Item>
+                        )}
+                        {/* <Form.Item
                             name="upload"
                             label="Upload"
                             valuePropName="fileList"
-                        // getValueFromEvent={normFile}
-                        // extra="longgggggggggggggggggggggggggggggggggg"
+                            getValueFromEvent={normFile}
+                            extra="longgggggggggggggggggggggggggggggggggg"
                         >
                             <Upload name="logo" action="/upload.do" listType="picture">
                                 <Button icon={<UploadOutlined />}>Click to upload</Button>
                             </Upload>
-                        </Form.Item>
+                        </Form.Item> */}
+
                         <Button type="primary" htmlType="submit" className="BTNRegister">
                             Register
                         </Button>

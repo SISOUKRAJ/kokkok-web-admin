@@ -31,7 +31,7 @@ const Drivers = () => {
         <div>
             <Row style={{ padding: 10 }}>
                 <Col md={4}>
-                    <h2 style={{ color: "orange", padding: 10 }}>Drivers</h2>
+                    <h2 style={{ color: "#FF9E1B ", padding: 10 }}>Drivers</h2>
                 </Col>
                 <Col md={16}>
                     <div className="formDriverBox">
@@ -68,9 +68,9 @@ const Drivers = () => {
                         </Form>
                     </div>
                     <div className="amountBox">
-                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "orange" }}>{allDrivers.length}</strong> </h3>
-                        <h3 className="amountItem">On Trips Drivers: <strong style={{ color: "orange" }}>0</strong> </h3>
-                        <h3 className="amountItem">Active Drivers: <strong style={{ color: "orange" }}>0</strong> </h3>
+                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "#FF9E1B " }}>{allDrivers.length}</strong> </h3>
+                        <h3 className="amountItem">On Trips Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3>
+                        <h3 className="amountItem">Active Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3>
                     </div>
                 </Col>
                 <Col md={4}>

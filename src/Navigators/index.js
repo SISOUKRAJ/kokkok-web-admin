@@ -70,9 +70,9 @@ const Navigators = () => {
             <div className="NavigatorHeader">
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <Row>
-                        <div style={{ marginLeft: 20, backgroundColor: "orange", width: 50, height: "auto" }}>Img </div>
+                        <div style={{ marginLeft: 20, backgroundColor: "#FF9E1B ", width: 50, height: "auto" }}>Img </div>
                         <div style={{ marginLeft: 20 }}>
-                            <strong style={{ color: "orange" }}>KoK KoK</strong> Web admin
+                            <strong style={{ color: "#FF9E1B " }}>KoK KoK</strong> Web admin
                             <br /> Dashboard
                         </div>
                     </Row>
@@ -80,7 +80,7 @@ const Navigators = () => {
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     {screen === "login" ? null :
                         <Row>
-                            <div style={{ marginLeft: 20, backgroundColor: "orange", width: 50, height: "auto" }}>Img </div>
+                            <div style={{ marginLeft: 20, backgroundColor: "#FF9E1B ", width: 50, height: "auto" }}>Img </div>
                             <div style={{ marginLeft: 20, marginRight: 20 }}>
                                 Souksavanh
                                 <Dropdown className="dropdownLogout" overlay={menu} style={{ border: "none", marginLeft: 5 }}>
@@ -98,7 +98,7 @@ const Navigators = () => {
                     <nav>
                         {nav.map((item, index) =>
                             <Link
-                                style={screen === item.name ? { backgroundColor: "orange" } : { color: "white" }}
+                                style={screen === item.name ? { backgroundColor: "#FF9E1B " } : { color: "white" }}
                                 key={index}
                                 className="navItem"
                                 to={`/${item.link}`}
