@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ScreenContext } from "../views/context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIdCard, faHome, faUser, faBell, faChartLine, faGear } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard, faHome, faUser, faBell, faChartLine, faGear, faCar } from '@fortawesome/free-solid-svg-icons'
 import "./index.css"
 
 const nav = [
@@ -20,6 +20,12 @@ const nav = [
         name: "drivers",
         label: "Drivers",
         icon: faIdCard,
+    },
+    {
+        link: "cars",
+        name: "cars",
+        label: "Cars",
+        icon: faCar,
     },
     {
         link: "passengers",
@@ -64,6 +70,7 @@ const Navigators = () => {
         navigate('/');
         setScreen("login");
         localStorage.setItem("screen", screen);
+        localStorage.removeItem("token");
     }
     return (
         <div>
