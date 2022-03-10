@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+
+import ScreenProvider from "./views/context/index";
+import CDOptionProvider from "./views/context/getCarOption";
+
 import './index.css';
 import 'antd/dist/antd.css';
 import App from './App';
-import BirdEyeProvider from "./views/context/index";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <BirdEyeProvider>
-        <App />
-      </BirdEyeProvider>
+      <ScreenProvider>
+        <CDOptionProvider>
+          <App />
+        </CDOptionProvider>
+      </ScreenProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

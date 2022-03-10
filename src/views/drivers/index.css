@@ -6,7 +6,7 @@
   align-items: center;
 }
 .searchBox {
-  background-color: #f2f2f2;
+  background-color: #e6e6e6;
   border-radius: 10px;
   padding: 10px;
   margin-top: 10px;
@@ -29,7 +29,7 @@
   border: none !important;
 }
 .resetButton {
-  color: orange;
+  color: #ff9e1b;
   padding: 0px 10px;
 }
 .amountBox {
@@ -50,7 +50,7 @@
   align-items: center;
 }
 .registerButton {
-  background-color: orange;
+  background-color: #ff9e1b;
   color: white;
   border: none;
   border-radius: 5px;

@@ -14,6 +14,8 @@ import Passengers from "./views/passengers/index";
 import Notifications from "./views/notifications";
 import Reports from "./views/reports/index";
 import RegisterDriver from "./views/drivers/Register/index";
+import Cars from "./views/cars/index";
+import RegisterCar from "./views/cars/register/index";
 
 const AppNavigator = () => {
 
@@ -29,7 +31,9 @@ const AppNavigator = () => {
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/reports" element={<Reports />} />
                 <Route path="*" element={<Errors />} />
-                <Route path="/register" element={<RegisterDriver />} />
+                <Route path="/register/drivers" element={<RegisterDriver />} />
+                <Route path="/cars" element={<Cars />} />
+                <Route path="/register/cars" element={<RegisterCar />} />
             </Routes>
 
             <Footer />

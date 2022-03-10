@@ -1,6 +1,8 @@
 import React from "react"
 import { Row, Col, Form, Input, InputNumber, DatePicker, Select, Upload, Button } from "antd"
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import moment from "moment";
+import axios from "axios";
 import "./index.css"
 
 const user_form = [
@@ -22,7 +24,7 @@ const user_form = [
         label: "Phone",
         name: "phone",
         message: "Please input your Phone!",
-        placeholder: "20999999",
+        placeholder: "2099889988",
         type: "number",
     },
     {
@@ -59,58 +61,10 @@ const user_form = [
     },
 ]
 
-const car_form = [
-    {
-        label: "Vehicle Brand",
-        name: "car_brand",
-        message: "Please input your Vehicle Brand!",
-        placeholder: "select Vehicle Brand",
-        Option: [
-            { value: "TOYOTA", label: "TOYOTA" },
-            { value: "HONDA", label: "HONDA" },
-        ],
-        type: "select",
-    },
-    {
-        label: "Model",
-        name: "model",
-        message: "Please input your Model!",
-        placeholder: "Camry",
-        type: "text",
-    },
-    {
-        label: "License plate",
-        name: "license_plate",
-        message: "Please input your License plate!",
-        placeholder: "ກກ 9999",
-        type: "text",
-    },
-    {
-        label: "User Type",
-        name: "user_type",
-        message: "Please input your User Type!",
-        placeholder: "select User Type",
-        Option: [
-            { value: "Gold", label: "Gold" },
-            { value: "Silver", label: "Silver" },
-        ],
-        type: "select",
-    },
-    {
-        label: "Fee",
-        name: "fee",
-        message: "Please input your Fee!",
-        placeholder: "50000",
-        type: "number",
-    }
-]
-
-const doc_form = [{}]
-
 const registerDriver = () => {
 
     const normFile = (e) => {
-        console.log('Upload event:', e);
+        // console.log('Upload event:', e.file);
 
         if (Array.isArray(e)) {
             return e;
@@ -119,8 +73,29 @@ const registerDriver = () => {
         return e && e.fileList;
     };
 
-    const onFinish = (values) => {
-        console.log("data: ", values);
+    const onFinish = async (values) => {
+        const body = {
+            ...values,
+            birthday: moment(values.birthday._d).format("DD/MM/YYYY"),
+            profile: !!values.profile && values.profile[0],
+            device_token: localStorage.getItem("token"),
+            profileImage: !!values.profileImage && values.profileImage[0],
+        }
+        console.log("data: ", body);
+
+        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/driver/register`, body,
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+            .then(res => {
+                // setDrivers(res.data.data);
+                console.log(res.data);
+                alert(res.data);
+            })
+            .catch((err) => console.log(err))
+
     };
 
     return (
@@ -128,6 +103,8 @@ const registerDriver = () => {
             <h2 className="registerTitle">Register Driver</h2>
             <Form layout="vertical" onFinish={onFinish}>
                 <Row>
+                    <Col md={8} className="inputSection">
+                    </Col>
                     <Col md={8} className="inputSection">
                         {user_form.map((item, index) =>
                             item.type === "text" ?
@@ -204,8 +181,6 @@ const registerDriver = () => {
                                                         {item.Option.map((option, index) =>
                                                             <Select.Option key={index} value={option.value}>{option.label}</Select.Option>
                                                         )}
-                                                        {/* <Select.Option value="Male">Male</Select.Option>
-                                                        <Select.Option value="FeMale">FeMale</Select.Option> */}
                                                     </Select>
                                                 </Form.Item>
                                                 :
@@ -213,78 +188,25 @@ const registerDriver = () => {
                         )}
                     </Col>
                     <Col md={8} className="inputSection">
-                        {car_form.map((item, index) =>
-                            item.type === "text" ?
-                                <Form.Item
-                                    key={index}
-                                    label={item.label}
-                                    name={item.name}
-                                    required
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: item.message,
-                                        },
-                                    ]}>
-                                    <Input placeholder={item.placeholder} />
-                                </Form.Item>
-                                : item.type === "select" ?
-                                    <Form.Item
-                                        key={index}
-                                        label={item.label}
-                                        name={item.name}
-                                        required
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: item.message,
-                                            },
-                                        ]}
-                                    >
-                                        <Select placeholder={item.placeholder}>
-                                            {item.Option.map((option, index) =>
-                                                <Select.Option key={index} value={option.value}>{option.label}</Select.Option>
-                                            )}
-                                            {/* <Select.Option value="Male">Male</Select.Option>
-                                        <Select.Option value="FeMale">FeMale</Select.Option> */}
-                                        </Select>
-                                    </Form.Item>
-                                    : item.type === "number" ?
-                                        <Form.Item
-                                            key={index}
-                                            label={item.label}
-                                            name={item.name}
-                                            required
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: item.message,
-                                                },
-                                            ]}>
-                                            <InputNumber placeholder={item.placeholder} style={{ width: "100%" }} />
-                                        </Form.Item>
-                                        :
-                                        null
-                        )}
-                        {/* 
-                       
-                        
-                        <Form.Item label="Fee" required >
-                            <Input placeholder="50.000" />
-                        </Form.Item> */}
-                    </Col>
-                    <Col md={8} className="inputSection">
                         <Form.Item
-                            name="upload"
-                            label="Upload"
+                            name="profileImage"
+                            label="Profile Image"
                             valuePropName="fileList"
-                        // getValueFromEvent={normFile}
+                            getValueFromEvent={normFile}
                         // extra="longgggggggggggggggggggggggggggggggggg"
+                        // required
+                        // rules={[
+                        //     {
+                        //         required: true,
+                        //         message: "Please input your Image!",
+                        //     },
+                        // ]}
                         >
                             <Upload name="logo" action="/upload.do" listType="picture">
                                 <Button icon={<UploadOutlined />}>Click to upload</Button>
                             </Upload>
                         </Form.Item>
+
                         <Button type="primary" htmlType="submit" className="BTNRegister">
                             Register
                         </Button>

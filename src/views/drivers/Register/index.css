@@ -1,18 +1,18 @@
 .registerTitle {
   padding: 10px;
-  color: orange;
+  color: #ff9e1b;
   margin: 0;
 }
 
 .inputSection {
   padding: 20px;
-  border-color: orange;
-  border-style: solid;
-  border-width: 1px;
+  /* border-color: #FF9E1B ; */
+  /* border-style: solid;
+  border-width: 1px; */
 }
 
 .BTNRegister {
-  background-color: orange;
+  background-color: #ff9e1b;
   color: white;
   margin: 10px;
   border-color: none;
