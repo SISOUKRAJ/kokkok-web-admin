@@ -2,30 +2,15 @@ import React, { useState, useEffect, useContext } from "react"
 import { Row, Col, Form, Input, Select, DatePicker, Button } from "antd"
 import { Link } from "react-router-dom";
 import { ScreenContext } from "../../views/context";
+import { CDOptionContext } from "../../views/context/getCarOption";
 import TableDrivers from "./table"
-import axios from "axios";
 import './index.css';
 
 const Drivers = () => {
     const { setScreen } = useContext(ScreenContext);
-    const [allDrivers, setAllDrivers] = useState([]);
-    const getDrivers = async () => {
-        await axios.get("http://115.84.76.134:3000/api/v1/admin/driver",
-            {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                },
-            })
-            .then(res => {
-                setAllDrivers(res.data.data);
-                // console.log(res.data.data);
-            })
-            .catch((err) => console.log(err))
-    }
+    const { drivers } = useContext(CDOptionContext);
 
-    useEffect(() => {
-        getDrivers();
-    }, []);
+    console.log("drivers==>>>", drivers);
 
     return (
         <div>
@@ -68,14 +53,14 @@ const Drivers = () => {
                         </Form>
                     </div>
                     <div className="amountBox">
-                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "#FF9E1B " }}>{allDrivers.length}</strong> </h3>
+                        <h3 className="amountItem">Total Drivers: <strong style={{ color: "#FF9E1B " }}>{!!drivers && drivers.length}</strong> </h3>
                         <h3 className="amountItem">On Trips Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3>
                         <h3 className="amountItem">Active Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3>
                     </div>
                 </Col>
                 <Col md={4}>
                     <div className="registerBox">
-                        <Link to="/register">
+                        <Link to="/register/drivers">
                             <Button type="primary"
                                 // icon={<DownloadOutlined />} 
                                 // size={size}
@@ -89,7 +74,7 @@ const Drivers = () => {
                 </Col>
             </Row>
             <div style={{ padding: 10 }}>
-                <TableDrivers allDrivers={!!allDrivers && allDrivers} />
+                <TableDrivers allDrivers={!!drivers && drivers} />
             </div>
         </div>
     )
