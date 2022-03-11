@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { Row, Col, Form, Input, InputNumber, DatePicker, Select, Upload, Button, Tabs, Table } from "antd"
-import { CDOptionContext } from "../../context/getCarOption";
+import { CarOptionContext } from "../../../views/context/getCarOption";
 
 const car_form = [
     {
@@ -49,11 +49,11 @@ const car_form = [
 ]
 
 const RegisterCars = () => {
-    const { car_brands, car_models, car_type } = useContext(CDOptionContext);
+    const { car_brands, car_models, car_type } = useContext(CarOptionContext);
 
     // console.log("car_brands==>>>", car_brands);
     // console.log("car_models==>>>", car_models);
-    // console.log("car_type==>>>", car_type);
+    console.log("car_type==>>>", car_type);
 
     const onFinish = (values) => {
 
