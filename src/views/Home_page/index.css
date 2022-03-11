@@ -1,0 +1,62 @@
+.container {
+    position: relative;
+    font-family: Arial;
+  }
+  
+  .text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .divInline{
+
+
+    list-style-type: none;
+  }
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 150px;
+    color: white;
+    display: inline-block;
+margin: 10px;
+padding: 1px;
+    font-family: arial;
+    border: 2px  ;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+  }
+
+.car1{
+
+background-color: #FF9E1B;
+}
+.car2{
+    background-color: #52575D;
+
+}
+.car3{
+
+    background-color: #41EB26;
+}
+
+
+.car4{
+
+    background-color: #FB4A44;
+}
+
+.car5{
+
+    background-color: #FF9E1B;
+}
+
+.car6{
+
+    background-color: #4F575C;
+}
+
