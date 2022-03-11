@@ -61,7 +61,7 @@ const user_form = [
     },
 ]
 
-const registerDriver = () => {
+const RegisterDriver = () => {
 
     const normFile = (e) => {
         // console.log('Upload event:', e.file);
@@ -83,16 +83,15 @@ const registerDriver = () => {
         }
         console.log("data: ", body);
 
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/driver/register`, body,
+        await axios.post(`${process.env.REACT_APP_API_URL_V1}/api/v1/driver/register`, body,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 },
             })
             .then(res => {
-                // setDrivers(res.data.data);
                 console.log(res.data);
-                alert(res.data);
+                alert("Register Success!");
             })
             .catch((err) => console.log(err))
 
@@ -217,4 +216,4 @@ const registerDriver = () => {
     )
 }
 
-export default registerDriver
+export default RegisterDriver
