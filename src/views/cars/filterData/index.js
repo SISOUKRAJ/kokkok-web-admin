@@ -8,7 +8,7 @@ import TableCars from "../table";
 const FilterData = () => {
     const { cars, car_brands, car_type, car_models } = useContext(CarOptionContext);
     // console.log("cars==>>>", cars);
-    console.log("cars==>>>", cars);
+
     return (
         <div>
             <Row style={{ padding: 10 }}>
