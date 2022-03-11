@@ -7,18 +7,7 @@ import "./index.css";
 
 const Login_page = () => {
     const { setScreen } = useContext(ScreenContext);
-    localStorage.setItem('token', "");
-
     const navigate = useNavigate();
-
-    const runTimeLogOut = () => {
-        setTimeout(() => {
-            alert("You have been logged out");
-            navigate('/');
-            setScreen("login");
-            // localStorage.setItem("screen", "");
-        }, 1000 * 60 * 60);
-    }
 
     const onFinish = async (values) => {
         const body = {
@@ -32,7 +21,6 @@ const Login_page = () => {
                 setScreen("dashboard");
                 localStorage.setItem('token', res.data.data.access_token);
                 navigate('/dashboard');
-                runTimeLogOut();
             }).catch(err => {
                 console.log(err);
                 message.error('Incorrect Phone or Password');
