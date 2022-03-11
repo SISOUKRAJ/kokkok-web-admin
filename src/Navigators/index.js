@@ -69,7 +69,7 @@ const Navigators = () => {
         // console.log('click', e);
         navigate('/');
         setScreen("login");
-        localStorage.setItem("screen", screen);
+        localStorage.setItem("screen", "login");
         localStorage.removeItem("token");
     }
     return (

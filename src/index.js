@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import ScreenProvider from "./views/context/index";
-import CDOptionProvider from "./views/context/getCarOption";
 
 import './index.css';
 import 'antd/dist/antd.css';
@@ -13,9 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ScreenProvider>
-        <CDOptionProvider>
-          <App />
-        </CDOptionProvider>
+        <App />
       </ScreenProvider>
     </BrowserRouter>
   </React.StrictMode>,
