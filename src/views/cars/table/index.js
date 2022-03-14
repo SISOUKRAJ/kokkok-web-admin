@@ -40,11 +40,6 @@ const index = (props) => {
             //     </>,
         },
         {
-            title: 'Type',
-            dataIndex: 'car_type_id',
-            key: 'car_type_id',
-        },
-        {
             title: 'Brands',
             dataIndex: 'car_brand_id',
             key: 'car_brand_id',
@@ -53,6 +48,11 @@ const index = (props) => {
             title: 'Model',
             dataIndex: 'car_model_id',
             key: 'car_model_id',
+        },
+        {
+            title: 'Type',
+            dataIndex: 'car_type_id',
+            key: 'car_type_id',
         },
         {
             title: 'License Plate',
@@ -82,7 +82,7 @@ const index = (props) => {
     ];
     return (
         <div>
-            <Table dataSource={format_cars} columns={columns} />
+            <Table dataSource={format_cars} columns={columns} pagination={{ pageSize: 5 }} scroll={{ y: 300 }} />
         </div>
     )
 }
