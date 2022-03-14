@@ -1,14 +1,16 @@
 import React, { useState } from "react"
 import { Row, Col, Form, Input, Select, DatePicker, Button, Modal, Tabs, Table, InputNumber } from "antd"
+import { EditOutlined } from '@ant-design/icons';
+import "./index.css"
 
 const ModalRegister = (props) => {
     const [visible, setVisible] = useState(false);
     const [tabActive, setTabActive] = useState("cars");
-    const { car_type, car_brands, car_models } = props
+    const { cars, car_type, car_brands, car_models } = props
     // console.log("car_type==>>>", car_type);
     // console.log("car_brands==>>>", car_brands);
     // console.log("car_models==>>>", car_models);
-    console.log("===>", tabActive);
+    // console.log("===>", tabActive);
 
     const { TabPane } = Tabs;
 
@@ -23,7 +25,6 @@ const ModalRegister = (props) => {
         } else {
             console.log("===>", "bbbb");
         }
-
 
         // const body = {
         //     ...values,
@@ -115,6 +116,57 @@ const ModalRegister = (props) => {
         }
     ];
 
+    const columns_price = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Price',
+            dataIndex: 'price',
+            key: 'price',
+        },
+        {
+            title: 'Distance',
+            dataIndex: 'distance',
+            key: 'distance',
+        },
+        {
+            title: 'Type',
+            dataIndex: 'car_type',
+            key: 'car_type',
+        }
+    ]
+
+    const columns_license_pate = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Word',
+            dataIndex: 'word',
+            key: 'word',
+        },
+        {
+            title: 'Number',
+            dataIndex: 'number',
+            key: 'number',
+        },
+        {
+            title: 'Province',
+            dataIndex: 'province',
+            key: 'province',
+        },
+        {
+            title: 'Car',
+            dataIndex: 'car',
+            key: 'car',
+        }
+    ]
+
     const formate_car_type = car_type.map(item => {
         return {
             ...item,
@@ -139,6 +191,81 @@ const ModalRegister = (props) => {
         }
     })
 
+    const provinces = [
+        {
+            id: "Attapeu province",
+            label: "Attapeu province",
+        },
+        {
+            id: "Bokeo province",
+            label: "Bokeo province",
+        },
+        {
+            id: "Bolikhamsai province",
+            label: "Bolikhamsai province",
+        },
+        {
+            id: "Champasak  province",
+            label: "Champasak  province",
+        },
+        {
+            id: "Houaphanh  province",
+            label: "Houaphanh  province",
+        },
+        {
+            id: "Khammouane  province",
+            label: "Khammouane  province",
+        },
+        {
+            id: "Luang Namtha province",
+            label: "Luang Namtha province",
+        },
+        {
+            id: "Luang Prabang province",
+            label: "Luang Prabang province",
+        },
+        {
+            id: "Oudomxay  province",
+            label: "Oudomxay  province",
+        },
+        {
+            id: "Phongsaly  province",
+            label: "Phongsaly  province",
+        },
+        {
+            id: "Salavan  province",
+            label: "Salavan  province",
+        },
+        {
+            id: "Savannakhet  province",
+            label: "Savannakhet  province",
+        },
+        {
+            id: "Vientiane  province",
+            label: "Vientiane  province",
+        },
+        {
+            id: "Vientiane Prefecture",
+            label: "Vientiane Prefecture",
+        },
+        {
+            id: "Sainyabuli province",
+            label: "Sainyabuli province",
+        },
+        {
+            id: "Sekong province",
+            label: "Sekong province",
+        },
+        {
+            id: "Xaisomboun  province",
+            label: "Xaisomboun  province",
+        },
+        {
+            id: "Xiangkhouang province",
+            label: "Xiangkhouang province",
+        }
+    ]
+
     const tab_formate = [
         {
             key: "car_type",
@@ -150,18 +277,10 @@ const ModalRegister = (props) => {
             form: [
                 {
                     label: "Name",
-                    name: "name",
+                    name: "type_name",
                     message: "Please input name!",
-                    placeholder: "name",
+                    placeholder: "Name",
                     type: "text",
-                },
-                {
-                    label: "Car Type",
-                    name: "car_type",
-                    message: "Please input Car's Type!",
-                    placeholder: "select Type",
-                    Option: car_type,
-                    type: "select"
                 },
             ]
         },
@@ -174,12 +293,11 @@ const ModalRegister = (props) => {
             },
             form: [
                 {
-                    label: "Car Type",
-                    name: "car_type",
-                    message: "Please input Car's Type!",
-                    placeholder: "select Type",
-                    Option: car_brands,
-                    type: "select"
+                    label: "Name",
+                    name: "brands_name",
+                    message: "Please input Name!",
+                    placeholder: "Name",
+                    type: "text",
                 },
             ]
         },
@@ -192,10 +310,25 @@ const ModalRegister = (props) => {
             },
             form: [
                 {
-                    label: "Car Type",
+                    label: "Name",
+                    name: "model_name",
+                    message: "Please input Name!",
+                    placeholder: "Name",
+                    type: "text",
+                },
+                {
+                    label: "Type",
                     name: "car_type",
                     message: "Please input Car's Type!",
                     placeholder: "select Type",
+                    Option: car_type,
+                    type: "select"
+                },
+                {
+                    label: "Brands",
+                    name: "car_brands",
+                    message: "Please input Car's Brands!",
+                    placeholder: "select Brands",
                     Option: car_brands,
                     type: "select"
                 },
@@ -206,15 +339,37 @@ const ModalRegister = (props) => {
             label: "License Plate",
             table: {
                 data: [],
-                columns: columns_model
+                columns: columns_license_pate
             },
             form: [
                 {
-                    label: "Car Type",
-                    name: "car_type",
-                    message: "Please input Car's Type!",
-                    placeholder: "select Type",
-                    Option: car_brands,
+                    label: "Word",
+                    name: "word",
+                    message: "Please input word!",
+                    placeholder: "ກກ",
+                    type: "text",
+                },
+                {
+                    label: "Number",
+                    name: "number",
+                    message: "Please input Number!",
+                    placeholder: "9988",
+                    type: "text",
+                },
+                {
+                    label: "Province",
+                    name: "province",
+                    message: "Please input Province!",
+                    placeholder: "select Province",
+                    Option: provinces,
+                    type: "select"
+                },
+                {
+                    label: "Car",
+                    name: "car",
+                    message: "Please input Car!",
+                    placeholder: "select Car",
+                    Option: cars,
                     type: "select"
                 },
             ]
@@ -224,22 +379,36 @@ const ModalRegister = (props) => {
             label: "Price",
             table: {
                 data: [],
-                columns: columns_model
+                columns: columns_price
             },
             form: [
+                {
+                    label: "Price",
+                    name: "price",
+                    message: "Please input Price!",
+                    placeholder: "1000000",
+                    type: "text",
+                },
+                {
+                    label: "Distance",
+                    name: "distance",
+                    message: "Please input Distance!",
+                    placeholder: "1000",
+                    type: "text",
+                },
                 {
                     label: "Car Type",
                     name: "car_type",
                     message: "Please input Car's Type!",
                     placeholder: "select Type",
-                    Option: car_brands,
+                    Option: car_type,
                     type: "select"
                 },
             ]
         }
     ]
 
-    const car_form = [
+    const car_form_left = [
         {
             label: "Name",
             name: "name",
@@ -259,7 +428,10 @@ const ModalRegister = (props) => {
             message: "Please input your Color!",
             placeholder: "red",
             type: "text",
-        },
+        }
+    ]
+
+    const car_form_middle = [
         {
             label: "Vehicle Type",
             name: "car_type",
@@ -286,9 +458,10 @@ const ModalRegister = (props) => {
         },
     ]
 
+
     return (
-        <div>
-            <Button type="primary" onClick={() => setVisible(true)}>
+        <div >
+            <Button type="primary" onClick={() => setVisible(true)} className="BTNManage" icon={<EditOutlined />}>
                 Manage
             </Button>
             <Modal
@@ -297,16 +470,15 @@ const ModalRegister = (props) => {
                 visible={visible}
                 onOk={() => setVisible(false)}
                 onCancel={() => setVisible(false)}
-                width={1000}
+                width={"90%"}
+                footer={null}
             >
                 <Tabs defaultActiveKey="1" onChange={callback}>
                     <TabPane tab="Cars" key="cars">
                         <Form layout="vertical" onFinish={onFinish}>
                             <Row>
                                 <Col md={8} className="inputSection">
-                                </Col>
-                                <Col md={8} className="inputSection">
-                                    {car_form.map((item, index) =>
+                                    {car_form_left.map((item, index) =>
                                         item.type === "text" ?
                                             <Form.Item
                                                 key={index}
@@ -321,7 +493,7 @@ const ModalRegister = (props) => {
                                                 ]}>
                                                 <Input placeholder={item.placeholder} />
                                             </Form.Item>
-                                            : item.type === "select" ?
+                                            : item.type === "number" ?
                                                 <Form.Item
                                                     key={index}
                                                     label={item.label}
@@ -332,30 +504,35 @@ const ModalRegister = (props) => {
                                                             required: true,
                                                             message: item.message,
                                                         },
-                                                    ]}
-                                                >
-                                                    <Select placeholder={item.placeholder}>
-                                                        {item.Option.map((option, index) =>
-                                                            <Select.Option key={index} value={option.id}>{option.name}</Select.Option>
-                                                        )}
-                                                    </Select>
+                                                    ]}>
+                                                    <InputNumber placeholder={item.placeholder} style={{ width: "100%" }} />
                                                 </Form.Item>
-                                                : item.type === "number" ?
-                                                    <Form.Item
-                                                        key={index}
-                                                        label={item.label}
-                                                        name={item.name}
-                                                        required
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: item.message,
-                                                            },
-                                                        ]}>
-                                                        <InputNumber placeholder={item.placeholder} style={{ width: "100%" }} />
-                                                    </Form.Item>
-                                                    :
-                                                    null
+                                                :
+                                                null
+                                    )}
+                                </Col>
+                                <Col md={8} className="inputSection">
+                                    {car_form_middle.map((item, index) =>
+                                        item.type === "select" ?
+                                            <Form.Item
+                                                key={index}
+                                                label={item.label}
+                                                name={item.name}
+                                                required
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: item.message,
+                                                    },
+                                                ]}
+                                            >
+                                                <Select placeholder={item.placeholder}>
+                                                    {item.Option.map((option, index) =>
+                                                        <Select.Option key={index} value={option.id}>{option.name}</Select.Option>
+                                                    )}
+                                                </Select>
+                                            </Form.Item>
+                                            : null
                                     )}
                                 </Col>
                                 <Col md={8} className="inputSection">
@@ -372,7 +549,7 @@ const ModalRegister = (props) => {
                             <TabPane tab={item.label} key={item.key}>
                                 <Row>
                                     <Col md={12} style={{ padding: 10 }}>
-                                        <Table columns={item.table.columns} dataSource={item.table.data} />
+                                        <Table columns={item.table.columns} dataSource={item.table.data} pagination={{ pageSize: 5 }} scroll={{ y: 300 }} />
                                     </Col>
                                     <Col md={12} style={{ padding: 10 }}>
                                         <Form layout="vertical" onFinish={onFinish}>
@@ -427,7 +604,7 @@ const ModalRegister = (props) => {
                                                             :
                                                             null
                                             )}
-                                            <Button type="primary" htmlType="submit">submit</Button>
+                                            <Button type="primary" htmlType="submit" className="BTNRegister">Submit</Button>
                                         </Form>
                                     </Col>
                                 </Row>
