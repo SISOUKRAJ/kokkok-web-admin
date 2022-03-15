@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react"
-import { Row, Col, Form, Input, Select, DatePicker, Button } from "antd"
-import { Link } from "react-router-dom";
+import { Row, Col, Button } from "antd"
 import { CarOptionContext } from "../../../views/context/getCarOption";
-import ModalRegister from "../ModalRegister";
+import { Link } from "react-router-dom";
 import TableCars from "../table";
+import { SmallDashOutlined } from '@ant-design/icons';
 import "./index.css";
 
 const FilterData = () => {
@@ -39,7 +39,7 @@ const FilterData = () => {
                             <Row >
                                 <Col md={6} style={{ width: "100%" }}>
                                     <input
-                                        placeholder="search"
+                                        placeholder="search name"
                                         className="searchCarInput"
                                         onChange={(e) => setCarName(e.target.value)}
                                         value={carName}
@@ -53,9 +53,9 @@ const FilterData = () => {
                                         onChange={(e) => setCarBrand(e.target.value)}
                                         value={carBrand}
                                     >
-                                        <option value="">Select Brands</option>
+                                        <option className="option-items" value="">Select Brands</option>
                                         {car_brands.map((item, index) => {
-                                            return <option key={index} value={item.id}>{item.name}</option>
+                                            return <option className="option-items" key={index} value={item.id}>{item.name}</option>
                                         })}
                                     </select>
                                 </Col>
@@ -88,7 +88,7 @@ const FilterData = () => {
                                     </select>
                                 </Col>
                             </Row>
-                            <a className="resetButton"
+                            <Button type="link" className="resetButton"
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -99,7 +99,7 @@ const FilterData = () => {
                                 }}
                             >
                                 Reset
-                            </a>
+                            </Button>
                         </div>
                     </div>
                     <div className="amountBox">
@@ -110,17 +110,16 @@ const FilterData = () => {
                 </Col>
                 <Col md={4}>
                     <div className="registerBox">
-                        {/* <Link to="/register/cars">
+                        <Link to="/register/cars">
                             <Button type="primary"
-                                // icon={<DownloadOutlined />} 
+                                icon={<SmallDashOutlined />}
                                 // size={size}
                                 className="registerButton"
                             // onClick={() => setScreen("register")}
                             >
-                                Register
+                                Manage Cars
                             </Button>
-                        </Link> */}
-                        <ModalRegister cars={cars} car_brands={car_brands} car_models={car_models} car_type={car_type} />
+                        </Link>
                     </div>
                 </Col>
             </Row>
