@@ -1,29 +1,34 @@
 import React, { useContext, useState } from "react"
-import { Row, Col, Button } from "antd"
+import { Row, Col, Button, Input, Select } from "antd"
 import { CarOptionContext } from "../../../views/context/getCarOption";
+import { DriverOptionContext } from "../../../views/context/getDriver";
 import { Link } from "react-router-dom";
-import TableCars from "../table";
 import { SmallDashOutlined } from '@ant-design/icons';
+import TableCars from "../table";
 import "./index.css";
 
 const FilterData = () => {
-    const { cars, car_brands, car_type, car_models } = useContext(CarOptionContext);
-    // console.log("cars==>>>", cars);
+    const { Option } = Select;
 
-    const [carName, setCarName] = useState("");
-    const [carBrand, setCarBrand] = useState("");
-    const [carModel, setCarModel] = useState("");
-    const [carType, setCarType] = useState("");
-    // console.log("carModel==>>>", carType);
+    const { cars, car_brands, car_type, car_models, car_type_second } = useContext(CarOptionContext);
+    const { drivers } = useContext(DriverOptionContext);
+    // console.log("drivers==>>>", drivers);
 
-    const dataName = carName !== null ? cars.filter(car => car.name.toLowerCase().includes(carName.toLowerCase())) : cars;
+    const [form, setForm] = useState({
+        name: "",
+        brand: "",
+        model: "",
+        type: "",
+    });
+    // console.log("form==>>>", form);
+
+    const dataName = form.name !== null ? cars.filter(car => car.name.toLowerCase().includes(form.name.toLowerCase())) : cars;
     // console.log("data==>>>", dataName);
-
-    const dataBrand = carBrand === "" ? dataName : dataName.filter(brand => brand.car_brand_id === parseInt(carBrand));
+    const dataBrand = form.brand === "" ? dataName : dataName.filter(brand => brand.car_brand.id === parseInt(form.brand));
     // console.log("dataBrand==>>>", dataBrand);
-    const dataModel = carModel === "" ? dataBrand : dataBrand.filter(model => model.car_model_id === parseInt(carModel));
+    const dataModel = form.model === "" ? dataBrand : dataBrand.filter(model => model.car_model.id === parseInt(form.model));
     // console.log("dataModel==>>>", dataModel);
-    const dataType = carType === "" ? dataModel : dataModel.filter(type => type.car_type_id === parseInt(carType));
+    const dataType = form.type === "" ? dataModel : dataModel.filter(type => type.car_type.id === parseInt(form.type));
     // console.log("dataType==>>>", dataType);
 
     return (
@@ -34,68 +39,69 @@ const FilterData = () => {
                 </Col>
                 <Col md={16}>
                     <div className="formDriverBox">
-
                         <div className="searchBox">
                             <Row >
                                 <Col md={6} style={{ width: "100%" }}>
-                                    <input
+                                    <Input
                                         placeholder="search name"
                                         className="searchCarInput"
-                                        onChange={(e) => setCarName(e.target.value)}
-                                        value={carName}
+                                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                        value={form.name}
                                     />
                                 </Col>
                                 <Col md={6} style={{ width: "100%" }}>
-                                    <select
+                                    <Select
                                         name="brands"
-                                        className="searchCarInput"
+                                        className="SelectOption"
                                         placeholder="select Brands"
-                                        onChange={(e) => setCarBrand(e.target.value)}
-                                        value={carBrand}
+                                        value={form.brand}
+                                        onSelect={(value) => setForm({ ...form, brand: value })}
                                     >
-                                        <option className="option-items" value="">Select Brands</option>
+                                        <Option value="">Select Brands</Option>
                                         {car_brands.map((item, index) => {
-                                            return <option className="option-items" key={index} value={item.id}>{item.name}</option>
+                                            return <Option key={index} value={item.id}>{item.name}</Option>
                                         })}
-                                    </select>
+                                    </Select>
                                 </Col>
                                 <Col md={6} style={{ width: "100%" }}>
-                                    <select
+                                    <Select
                                         name="model"
-                                        className="searchCarInput"
+                                        className="SelectOption"
                                         placeholder="select Model"
-                                        onChange={(e) => setCarModel(e.target.value)}
-                                        value={carModel}
+                                        value={form.model}
+                                        onSelect={(value) => setForm({ ...form, model: value })}
                                     >
-                                        <option value="">Select Model</option>
+                                        <Option value="">Select Model</Option>
                                         {car_models.map((item, index) => {
-                                            return <option key={index} value={item.id}>{item.name}</option>
+                                            return <Option key={index} value={item.id}>{item.name}</Option>
                                         })}
-                                    </select>
+                                    </Select>
                                 </Col>
                                 <Col md={6} style={{ width: "100%" }}>
-                                    <select
+                                    <Select
                                         name="Type"
-                                        className="searchCarInput"
+                                        className="SelectOption"
                                         placeholder="select Type"
-                                        onChange={(e) => setCarType(e.target.value)}
-                                        value={carType}
+                                        value={form.type}
+                                        onSelect={(value) => setForm({ ...form, type: value })}
                                     >
-                                        <option value="">Select Type</option>
+                                        <Option value="">Select Type</Option>
                                         {car_type.map((item, index) => {
-                                            return <option key={index} value={item.id}>{item.name}</option>
+                                            return <Option key={index} value={item.id}>{item.name}</Option>
                                         })}
-                                    </select>
+                                    </Select>
                                 </Col>
                             </Row>
                             <Button type="link" className="resetButton"
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    setCarName("")
-                                    setCarBrand("")
-                                    setCarModel("")
-                                    setCarType("")
+                                    setForm({
+                                        name: "",
+                                        brand: "",
+                                        model: "",
+                                        type: "",
+                                    })
                                 }}
                             >
                                 Reset
@@ -104,8 +110,6 @@ const FilterData = () => {
                     </div>
                     <div className="amountBox">
                         <h3 className="amountItem">Total Cars: <strong style={{ color: "#FF9E1B " }}>{!!cars && cars.length}</strong> </h3>
-                        {/* <h3 className="amountItem">On Trips Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3> */}
-                        {/* <h3 className="amountItem">Cars Drivers: <strong style={{ color: "#FF9E1B " }}>0</strong> </h3> */}
                     </div>
                 </Col>
                 <Col md={4}>
@@ -113,9 +117,7 @@ const FilterData = () => {
                         <Link to="/register/cars">
                             <Button type="primary"
                                 icon={<SmallDashOutlined />}
-                                // size={size}
                                 className="registerButton"
-                            // onClick={() => setScreen("register")}
                             >
                                 Manage Cars
                             </Button>
@@ -124,7 +126,14 @@ const FilterData = () => {
                 </Col>
             </Row>
             <div style={{ padding: 10 }}>
-                <TableCars cars={dataType} />
+                <TableCars
+                    cars={dataType}
+                    car_brands={car_brands}
+                    car_type={car_type}
+                    car_models={car_models}
+                    car_type_second={car_type_second}
+                    drivers={drivers}
+                />
             </div>
         </div>
     )
