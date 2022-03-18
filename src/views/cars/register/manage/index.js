@@ -14,16 +14,9 @@ const ManageCars = () => {
     const { cars, car_brands, car_type, car_models, car_type_second, car_price, car_license_plate, setCarRefresh } = useContext(CarOptionContext);
     const { drivers } = useContext(DriverOptionContext);
 
-    // console.log("cars==>>>", cars);
-    // console.log("car_type==>>>", car_type);
-    // console.log("car_brands==>>>", car_brands);
-    // console.log("car_models==>>>", car_models);
-    // console.log("car_price===>", tabActive);
-
     const { TabPane } = Tabs;
 
     function callback(key) {
-        // console.log(key);
         setTabActive(key);
     }
 
@@ -44,8 +37,6 @@ const ManageCars = () => {
     };
 
     const handleInsert = async (api, body) => {
-        // console.log("api==>>>", api);
-        // console.log("body==>>>", body);
         try {
             await axios.post(`${process.env.REACT_APP_API_URL_V1}${api}`, body,
                 {
@@ -55,7 +46,6 @@ const ManageCars = () => {
                 })
                 .then(res => {
                     setCarRefresh(res.data.data);
-                    // console.log(res.data.data);
                     message.success("Register success");
                 })
                 .catch((err) => {
@@ -68,7 +58,6 @@ const ManageCars = () => {
     }
 
     const onDelete = (key) => {
-        // console.log(key);
         if (tabActive === "cars") {
             handleDelete("/api/v1/admin/oauth/car", key);
         } else if (tabActive === "car_type") {
@@ -85,28 +74,24 @@ const ManageCars = () => {
     };
 
     const handleDelete = async (api, body) => {
-        console.log("api==>>>", api);
-        console.log("body==>>>", body);
-        // try {
-        //     await axios.post(`${process.env.REACT_APP_API_URL_V1}${api}/${body}`,
-        //         {
-        //             headers: {
-        //                 "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        //             },
-        //         })
-        //         .then(res => {
-        //             setCarRefresh(res.data.data);
-        //             // console.log(res.data.data);
-        //             message.success("Delete success");
-        //             // window.location.reload();
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //         })
-        // } catch (error) {
-        //     console.log(error);
-        //     message.error("Delete fail, Please try again later or contact admin");
-        // }
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL_V1}${api}/${body}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                    },
+                })
+                .then(res => {
+                    message.success("Delete success");
+                    window.location.reload();
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        } catch (error) {
+            console.log(error);
+            message.error("Delete fail, Please try again later or contact admin");
+        }
     }
 
     const provinces = [

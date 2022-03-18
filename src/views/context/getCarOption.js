@@ -34,7 +34,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCars(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -47,7 +46,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarType(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -60,7 +58,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarTypeSecond(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -73,7 +70,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarBrands(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -86,7 +82,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarModels(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -100,7 +95,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarPrice(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -114,7 +108,6 @@ const GetCarOption = (props) => {
             })
             .then(res => {
                 setCarLicensePlate(res.data.data);
-                // console.log(res.data.data);
             })
             .catch((err) => console.log(err))
     }
@@ -128,12 +121,6 @@ const GetCarOption = (props) => {
         get_car_price();
         get_car_license_plate();
     }, [carRefresh]);
-
-    // console.log("drivers", drivers);
-    // console.log("cars", cars);
-    // console.log("car_type==>", car_type);
-    // console.log("car_brands", car_brands);
-    // console.log("car_models", car_models);
 
     return (
         <div>

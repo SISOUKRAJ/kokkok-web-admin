@@ -6,7 +6,6 @@ import ModalUpdate from "../Modal"
 
 const index = (props) => {
     const { cars, car_brands, car_type, car_models, car_type_second, drivers } = props
-    // console.log("drivers==>>>", drivers);
 
     const format_cars = !!cars && cars.map((item, index) => {
         return {
@@ -129,9 +128,6 @@ const index = (props) => {
     ];
 
     const handleDelete = async (key) => {
-        // console.log(key);
-        console.log("cars===>>>", key);
-
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car/${key}`,
                 {
@@ -140,11 +136,8 @@ const index = (props) => {
                     },
                 })
                 .then(res => {
-                    // setCars(res.data.data);
-                    // console.log(res.data.data);
                     message.success("Delete success");
                     window.location.reload();
-                    // return res.data.data;
                 })
                 .catch((err) => {
                     console.log(err);

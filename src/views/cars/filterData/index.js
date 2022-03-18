@@ -12,7 +12,6 @@ const FilterData = () => {
 
     const { cars, car_brands, car_type, car_models, car_type_second } = useContext(CarOptionContext);
     const { drivers } = useContext(DriverOptionContext);
-    // console.log("drivers==>>>", drivers);
 
     const [form, setForm] = useState({
         name: "",
@@ -20,16 +19,11 @@ const FilterData = () => {
         model: "",
         type: "",
     });
-    // console.log("form==>>>", form);
 
     const dataName = form.name !== null ? cars.filter(car => car.name.toLowerCase().includes(form.name.toLowerCase())) : cars;
-    // console.log("data==>>>", dataName);
     const dataBrand = form.brand === "" ? dataName : dataName.filter(brand => brand.car_brand.id === parseInt(form.brand));
-    // console.log("dataBrand==>>>", dataBrand);
     const dataModel = form.model === "" ? dataBrand : dataBrand.filter(model => model.car_model.id === parseInt(form.model));
-    // console.log("dataModel==>>>", dataModel);
     const dataType = form.type === "" ? dataModel : dataModel.filter(type => type.car_type.id === parseInt(form.type));
-    // console.log("dataType==>>>", dataType);
 
     return (
         <div>

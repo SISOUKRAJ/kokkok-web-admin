@@ -8,14 +8,7 @@ const ModalRegister = (props) => {
     const [form] = Form.useForm();
 
     const [visible, setVisible] = useState(false);
-    // const [tabActive, setTabActive] = useState("cars");
-    // const { data, tabActive, car_brands, car_type, car_models, car_type_second, drivers } = props
     const { data, tabActive, car_brands, car_type, car_models, car_type_second, drivers, provinces, cars } = props
-    // console.log("car_type==>>>", car_type);
-    // console.log("car_brands==>>>", car_brands);
-    // console.log("car_models==>>>", car_models);
-    // console.log("===>", data);
-    // console.log(`${tabActive}`, tabActive);
 
     const onFinish = async (values) => {
         const dataForm = {
@@ -88,8 +81,6 @@ const ModalRegister = (props) => {
     }
 
     const handleUpdate = async (api, body) => {
-        console.log("api==>>>", api);
-        console.log("body==>>>", body);
         try {
             await axios.put(`${process.env.REACT_APP_API_URL_V1}${api}/${body.id}`, body,
                 {
@@ -98,8 +89,6 @@ const ModalRegister = (props) => {
                     },
                 })
                 .then(res => {
-                    // setCars(res.data.data);
-                    // console.log(res.data);
                     message.success("Update success");
                     window.location.reload();
                 })

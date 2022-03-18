@@ -65,8 +65,6 @@ const Navigators = () => {
     );
 
     function handleMenuClick(e) {
-        // message.info('Click on menu item.');
-        // console.log('click', e);
         navigate('/');
         setScreen("login");
         localStorage.setItem("screen", "login");

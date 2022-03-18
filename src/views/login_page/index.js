@@ -14,10 +14,8 @@ const Login_page = () => {
             phone: values.phone,
             password: values.password
         }
-        // console.log(body);
         await Axios.post("http://115.84.76.134:3000/api/v1/user/login", body)
             .then(res => {
-                // console.log(res.data.data);
                 setScreen("dashboard");
                 localStorage.setItem('token', res.data.data.access_token);
                 navigate('/dashboard');
@@ -26,10 +24,6 @@ const Login_page = () => {
                 message.error('Incorrect Phone or Password');
             })
     };
-
-    // const onFinishFailed = (errorInfo) => {
-    //     console.log('Failed:', errorInfo);
-    // };
 
     return (
         <div>
@@ -42,11 +36,9 @@ const Login_page = () => {
                             remember: true,
                         }}
                         onFinish={onFinish}
-                        // onFinishFailed={onFinishFailed}
                         autoComplete="off"
                     >
                         <Form.Item
-                            // label="Username"
                             name="phone"
                             rules={[
                                 {
@@ -61,12 +53,11 @@ const Login_page = () => {
                                     width: "100%",
                                     padding: "10px 15px ",
                                 }}
+                                maxLength={10}
                                 placeholder="Phone"
                             />
                         </Form.Item>
-
                         <Form.Item
-                            // label="Password"
                             name="password"
                             rules={[
                                 {
@@ -79,7 +70,6 @@ const Login_page = () => {
                                 placeholder="Password"
                             />
                         </Form.Item>
-
                         <Form.Item>
                             <Button className="LoginButton" htmlType="submit">
                                 Log in
