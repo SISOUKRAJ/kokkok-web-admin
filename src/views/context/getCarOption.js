@@ -23,6 +23,7 @@ const GetCarOption = (props) => {
     const [car_models, setCarModels] = useState([]);
     const [car_price, setCarPrice] = useState([]);
     const [car_license_plate, setCarLicensePlate] = useState([]);
+    const [carRefresh, setCarRefresh] = useState(false);
 
     const get_cars = async () => {
         await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car`,
@@ -126,7 +127,7 @@ const GetCarOption = (props) => {
         get_car_models();
         get_car_price();
         get_car_license_plate();
-    }, []);
+    }, [carRefresh]);
 
     // console.log("drivers", drivers);
     // console.log("cars", cars);
@@ -137,7 +138,7 @@ const GetCarOption = (props) => {
     return (
         <div>
             <CarOptionContext.Provider
-                value={{ cars, car_brands, car_models, car_type, car_type_second, car_price, car_license_plate }}
+                value={{ cars, car_brands, car_models, car_type, car_type_second, car_price, car_license_plate, setCarRefresh }}
             >
                 {props.children}
             </CarOptionContext.Provider>
