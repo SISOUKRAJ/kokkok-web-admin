@@ -1,12 +1,15 @@
 import React from "react"
-import CarOptionContext from "../../../views/context/getCarOption";
+import CarOptionProvider from "../../../views/context/getCarOption";
+import DriverOptionProvider from "../../../views/context/getDriver";
 import ManageCars from "./manage";
-const RegisterCars = (props) => {
+const RegisterCars = () => {
     return (
         <div >
-            <CarOptionContext >
-                <ManageCars />
-            </CarOptionContext>
+            <CarOptionProvider >
+                <DriverOptionProvider >
+                    <ManageCars />
+                </DriverOptionProvider>
+            </CarOptionProvider>
         </div>
     )
 }
