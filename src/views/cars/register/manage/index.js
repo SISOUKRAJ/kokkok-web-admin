@@ -174,6 +174,9 @@ const ManageCars = () => {
             title: 'Id',
             dataIndex: 'id',
             key: 'id',
+            fixed: 'left',
+            align: 'center',
+            width: 50,
         },
         {
             title: 'Name',
@@ -207,12 +210,17 @@ const ManageCars = () => {
         {
             title: 'operation',
             dataIndex: 'operation',
+            fixed: 'right',
             render: (_, record) =>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <ModalUpdate data={record} tabActive={tabActive} />
 
                     <Popconfirm title="Sure to delete?" onConfirm={() => onDelete(record.id)}>
-                        <Button type="link" icon={<DeleteOutlined />} style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none" }} />
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none", paddingLeft: 10, paddingRight: 10 }}
+                        />
                     </Popconfirm>
                 </div>
         },
@@ -223,6 +231,9 @@ const ManageCars = () => {
             title: 'Id',
             dataIndex: 'id',
             key: 'id',
+            fixed: 'left',
+            align: 'center',
+            width: 50,
         },
         {
             title: 'Name',
@@ -248,12 +259,17 @@ const ManageCars = () => {
         {
             title: 'operation',
             dataIndex: 'operation',
-            render: (_, record) =>
+            fixed: 'right',
+            render: (text, record) =>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <ModalUpdate data={record} tabActive={tabActive} car_brands={car_brands} car_type={car_type} />
 
                     <Popconfirm title="Sure to delete?" onConfirm={() => onDelete(record.id)}>
-                        <Button type="link" icon={<DeleteOutlined />} style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none" }} />
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none", paddingLeft: 10, paddingRight: 10 }}
+                        />
                     </Popconfirm>
                 </div>
         },
@@ -264,6 +280,9 @@ const ManageCars = () => {
             title: 'Id',
             dataIndex: 'id',
             key: 'id',
+            fixed: 'left',
+            align: 'center',
+            width: 50,
         },
         {
             title: 'Name',
@@ -289,6 +308,9 @@ const ManageCars = () => {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            fixed: 'left',
+            align: 'center',
+            width: 50,
         },
         {
             title: 'Price',
@@ -325,12 +347,17 @@ const ManageCars = () => {
         {
             title: 'operation',
             dataIndex: 'operation',
-            render: (_, record) =>
+            fixed: 'right',
+            render: (text, record) =>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <ModalUpdate data={record} tabActive={tabActive} car_type={car_type} />
 
                     <Popconfirm title="Sure to delete?" onConfirm={() => onDelete(record.id)}>
-                        <Button type="link" icon={<DeleteOutlined />} style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none" }} />
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none", paddingLeft: 10, paddingRight: 10 }}
+                        />
                     </Popconfirm>
                 </div>
         },
@@ -341,6 +368,9 @@ const ManageCars = () => {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            fixed: 'left',
+            align: 'center',
+            width: 50,
         },
         {
             title: 'Word',
@@ -368,12 +398,17 @@ const ManageCars = () => {
         {
             title: 'operation',
             dataIndex: 'operation',
+            fixed: 'right',
             render: (_, record) =>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <ModalUpdate data={record} tabActive={tabActive} provinces={provinces} cars={cars} />
 
                     <Popconfirm title="Sure to delete?" onConfirm={() => onDelete(record.id)}>
-                        <Button type="link" icon={<DeleteOutlined />} style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none" }} />
+                        <Button
+                            type="link"
+                            icon={<DeleteOutlined />}
+                            style={{ marginLeft: 10, backgroundColor: "#dc3545", color: "white", border: "none", paddingLeft: 10, paddingRight: 10 }}
+                        />
                     </Popconfirm>
                 </div>
         },
@@ -634,7 +669,8 @@ const ManageCars = () => {
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <Link to="/cars">
                     <h2
-                        className="clickBack" style={{ color: "#ff9e1b" }}>
+                        className="clickBack" style={{ color: "#ff9e1b" }}
+                    >
                         Cars
                     </h2>
                 </Link>
@@ -743,7 +779,7 @@ const ManageCars = () => {
                                         columns={item.table.columns}
                                         dataSource={item.table.data}
                                         pagination={{ pageSize: 5 }}
-                                        scroll={{ y: 300 }}
+                                        scroll={{ y: 300, x: 500 }}
                                     />
                                 </Col>
                                 <Col md={8} style={{ padding: 10 }}>

@@ -10,3 +10,15 @@
   border-radius: 0 !important;
   width: 100% !important;
 }
+
+.titlePage {
+  padding: 10px;
+  color: #ff9e1b;
+}
+
+@media screen and (max-width: 768px) {
+  .titlePage {
+    text-align: center;
+    margin: 0;
+  }
+}

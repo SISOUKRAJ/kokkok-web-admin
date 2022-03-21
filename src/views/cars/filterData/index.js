@@ -3,7 +3,7 @@ import { Row, Col, Button, Input, Select } from "antd"
 import { CarOptionContext } from "../../../views/context/getCarOption";
 import { DriverOptionContext } from "../../../views/context/getDriver";
 import { Link } from "react-router-dom";
-import { SmallDashOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import TableCars from "../table";
 import "./index.css";
 
@@ -28,10 +28,10 @@ const FilterData = () => {
     return (
         <div>
             <Row style={{ padding: 10 }}>
-                <Col md={4}>
-                    <h2 style={{ color: "#FF9E1B ", padding: 10 }}>Cars</h2>
+                <Col md={4} sm={24}>
+                    <h2 className="titlePage">Cars</h2>
                 </Col>
-                <Col md={16}>
+                <Col md={16} sm={24}>
                     <div className="formDriverBox">
                         <div className="searchBox">
                             <Row >
@@ -106,14 +106,14 @@ const FilterData = () => {
                         <h3 className="amountItem">Total Cars: <strong style={{ color: "#FF9E1B " }}>{!!cars && cars.length}</strong> </h3>
                     </div>
                 </Col>
-                <Col md={4}>
+                <Col md={4} sm={24}>
                     <div className="registerBox">
                         <Link to="/register/cars">
                             <Button type="primary"
-                                icon={<SmallDashOutlined />}
+                                icon={<ArrowRightOutlined />}
                                 className="registerButton"
                             >
-                                Manage Cars
+                                Manage
                             </Button>
                         </Link>
                     </div>

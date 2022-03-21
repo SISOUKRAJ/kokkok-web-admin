@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Row, Col, Form, Input, Select, Button, Modal, InputNumber, message } from "antd"
 import { EditOutlined } from '@ant-design/icons';
 import axios from "axios";
@@ -103,7 +103,11 @@ const ModalRegister = (props) => {
 
     return (
         <div >
-            <Button onClick={() => setVisible(true)} style={{ marginLeft: 10, backgroundColor: "#ffc107", color: "white", border: "none" }} icon={<EditOutlined />} />
+            <Button
+                onClick={() => setVisible(true)}
+                style={{ backgroundColor: "#ffc107", color: "white", border: "none" }}
+                icon={<EditOutlined />}
+            />
 
             <Modal
                 title={
@@ -206,7 +210,7 @@ const ModalRegister = (props) => {
                             </Col>
                         </Row>
                         : tabActive === "car_type" ?
-                            <Row>
+                            <div>
                                 <Form.Item
                                     label="Name"
                                     name="name"
@@ -215,9 +219,9 @@ const ModalRegister = (props) => {
                                     <Input placeholder="Name" />
                                 </Form.Item>
                                 <Button htmlType="submit" className="BTNUpdate">Update</Button>
-                            </Row>
+                            </div>
                             : tabActive === "car_brands" ?
-                                <Row>
+                                <div>
                                     <Form.Item
                                         label="Name"
                                         name="name"
@@ -226,9 +230,9 @@ const ModalRegister = (props) => {
                                         <Input placeholder="Name" />
                                     </Form.Item>
                                     <Button htmlType="submit" className="BTNUpdate">Update</Button>
-                                </Row>
+                                </div>
                                 : tabActive === "car_model" ?
-                                    <Row>
+                                    <div>
                                         <Form.Item
                                             label="Name"
                                             name="name"
@@ -259,9 +263,9 @@ const ModalRegister = (props) => {
                                             </Select>
                                         </Form.Item>
                                         <Button htmlType="submit" className="BTNUpdate">Update</Button>
-                                    </Row>
+                                    </div>
                                     : tabActive === "license_plate" ?
-                                        <Row>
+                                        <div>
                                             <Form.Item
                                                 label="Word"
                                                 name="word"
@@ -305,9 +309,9 @@ const ModalRegister = (props) => {
                                                 </Select>
                                             </Form.Item>
                                             <Button htmlType="submit" className="BTNUpdate">Update</Button>
-                                        </Row>
+                                        </div>
                                         : tabActive === "price" ?
-                                            <Row>
+                                            <div>
                                                 <Form.Item
                                                     label="Price"
                                                     name="price"
@@ -346,11 +350,11 @@ const ModalRegister = (props) => {
                                                     </Select>
                                                 </Form.Item>
                                                 <Button htmlType="submit" className="BTNUpdate">Update</Button>
-                                            </Row>
+                                            </div>
                                             : null}
                 </Form>
             </Modal>
-        </div>
+        </div >
     )
 }
 
