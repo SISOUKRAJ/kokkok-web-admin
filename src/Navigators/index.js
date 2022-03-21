@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Row, Dropdown, Button, Menu } from 'antd';
+import React, { useContext, useState } from "react";
+import { Row, Dropdown, Button, Menu, Drawer } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ScreenContext } from "../views/context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIdCard, faHome, faUser, faBell, faChartLine, faGear, faCar } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard, faHome, faUser, faBell, faChartLine, faGear, faCar, faBars } from '@fortawesome/free-solid-svg-icons'
 import "./index.css"
 
 const nav = [
@@ -56,6 +56,7 @@ const nav = [
 const Navigators = () => {
     const { setScreen, screen } = useContext(ScreenContext);
     const navigate = useNavigate();
+    const [visible, setVisible] = useState(false);
     const menu = (
         <Menu onClick={handleMenuClick}>
             <Menu.Item key="1" icon={<UserOutlined />}>
@@ -65,13 +66,12 @@ const Navigators = () => {
     );
 
     function handleMenuClick(e) {
-        // message.info('Click on menu item.');
-        // console.log('click', e);
         navigate('/');
         setScreen("login");
         localStorage.setItem("screen", "login");
         localStorage.removeItem("token");
     }
+
     return (
         <div>
             <div className="NavigatorHeader">
@@ -102,7 +102,7 @@ const Navigators = () => {
             </div>
             {screen === "login" ? null :
                 <div className="NavigatorBody">
-                    <nav>
+                    <nav className="navBar">
                         {nav.map((item, index) =>
                             <Link
                                 style={screen === item.name ? { backgroundColor: "#FF9E1B " } : { color: "white" }}
@@ -118,6 +118,42 @@ const Navigators = () => {
                             </Link>
                         )}
                     </nav>
+                    <div className="responsiveNavbar">
+                        <button
+                            className="btnDrawer"
+                            type="primary"
+                            onClick={() => setVisible(true)}
+                        >
+                            <FontAwesomeIcon icon={faBars} className="navIconResponsive" />
+                        </button>
+                        <Drawer
+                            title="Menu"
+                            placement="left"
+                            closable={false}
+                            onClose={() => setVisible(false)}
+                            visible={visible}
+                        >
+                            <nav>
+                                {nav.map((item, index) =>
+                                    <Row key={index}>
+                                        <Link
+                                            style={screen === item.name ? { backgroundColor: "#FF9E1B " } : { color: "white" }}
+                                            className="navItem"
+                                            to={`/${item.link}`}
+                                            onClick={() => {
+                                                setScreen(item.name);
+                                                localStorage.setItem("screen", item.name);
+                                                setVisible(false);
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={item.icon} className="navIcon" /> {item.label}
+                                        </Link>
+                                    </Row>
+
+                                )}
+                            </nav>
+                        </Drawer>
+                    </div>
                 </div>
             }
         </div >
