@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/SISOUKRAJ/kokkok-web-admin.git/static/css/main.073c9b0a.css",
-    "main.js": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.0377782f.js",
-    "static/js/787.82a5c074.chunk.js": "/SISOUKRAJ/kokkok-web-admin.git/static/js/787.82a5c074.chunk.js",
-    "static/media/logo.svg": "/SISOUKRAJ/kokkok-web-admin.git/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/SISOUKRAJ/kokkok-web-admin.git/index.html",
-    "main.073c9b0a.css.map": "/SISOUKRAJ/kokkok-web-admin.git/static/css/main.073c9b0a.css.map",
-    "main.0377782f.js.map": "/SISOUKRAJ/kokkok-web-admin.git/static/js/main.0377782f.js.map",
-    "787.82a5c074.chunk.js.map": "/SISOUKRAJ/kokkok-web-admin.git/static/js/787.82a5c074.chunk.js.map"
+    "main.css": "/kokkok-web-admin/static/css/main.073c9b0a.css",
+    "main.js": "/kokkok-web-admin/static/js/main.60123fa5.js",
+    "static/js/787.82a5c074.chunk.js": "/kokkok-web-admin/static/js/787.82a5c074.chunk.js",
+    "static/media/logo.svg": "/kokkok-web-admin/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/kokkok-web-admin/index.html",
+    "main.073c9b0a.css.map": "/kokkok-web-admin/static/css/main.073c9b0a.css.map",
+    "main.60123fa5.js.map": "/kokkok-web-admin/static/js/main.60123fa5.js.map",
+    "787.82a5c074.chunk.js.map": "/kokkok-web-admin/static/js/787.82a5c074.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.0377782f.js"
+    "static/js/main.60123fa5.js"
   ]
 }
