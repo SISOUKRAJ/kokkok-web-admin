@@ -14,10 +14,11 @@ const Login_page = () => {
             phone: values.phone,
             password: values.password
         }
-        await Axios.post("http://115.84.76.134:3000/api/v1/user/login", body)
+        await Axios.post(`${process.env.REACT_APP_API_URL_V1}/api/v1/user/login`, body)
             .then(res => {
                 setScreen("dashboard");
                 localStorage.setItem('token', res.data.data.access_token);
+                localStorage.setItem('screen', "dashboard");
                 navigate('/dashboard');
             }).catch(err => {
                 console.log(err);

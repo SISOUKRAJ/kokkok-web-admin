@@ -2,7 +2,7 @@
   "name": "kokkok-web-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/SISOUKRAJ/kokkok-web-admin.git",
+  "homepage": "https://sisoukraj.github.io/kokkok-web-admin",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
