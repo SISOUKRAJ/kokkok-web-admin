@@ -85,7 +85,7 @@ const Navigators = () => {
                     </Row>
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    {screen === "login" ? null :
+                    {screen === "login" || screen === null ? null :
                         <Row>
                             <div style={{ marginLeft: 20, backgroundColor: "#FF9E1B ", width: 50, height: "auto" }}>Img </div>
                             <div style={{ marginLeft: 20, marginRight: 20 }}>
@@ -100,7 +100,7 @@ const Navigators = () => {
                     }
                 </div>
             </div>
-            {screen === "login" ? null :
+            {screen === "login" || screen === null ? null :
                 <div className="NavigatorBody">
                     <nav className="navBar">
                         {nav.map((item, index) =>

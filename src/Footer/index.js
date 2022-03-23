@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ScreenContext } from "../views/context";
 import "./index.css";
 
-const footer = () => {
+const Footer = () => {
+    const { screen } = useContext(ScreenContext);
     return (
         <div>
-            <div className="footer"><strong style={{ color: "white" }}>KoKKok DEV</strong></div>
+            {screen === null || screen === "login" ? null
+                : <div className="footer"><strong style={{ color: "white" }}>KoKKok DEV</strong></div>
+            }
         </div>
     )
 }
 
-export default footer
+export default Footer
