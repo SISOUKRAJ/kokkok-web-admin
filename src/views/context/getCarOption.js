@@ -3,7 +3,7 @@ import React, {
     createContext,
     useEffect
 } from "react";
-import axios from "axios";
+import { axiosPrivate } from "../../api/axios";
 
 export const CarOptionContext = createContext({
     cars: [],
@@ -26,7 +26,7 @@ const GetCarOption = (props) => {
     const [carRefresh, setCarRefresh] = useState(false);
 
     const get_cars = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -38,7 +38,7 @@ const GetCarOption = (props) => {
             .catch((err) => console.log(err))
     }
     const get_car_type = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-type`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-type`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -50,7 +50,7 @@ const GetCarOption = (props) => {
             .catch((err) => console.log(err))
     }
     const get_car_type_second = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-type-second`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-type-second`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -62,7 +62,7 @@ const GetCarOption = (props) => {
             .catch((err) => console.log(err))
     }
     const get_car_brands = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/oauth/car-brand`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/oauth/car-brand`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -74,7 +74,7 @@ const GetCarOption = (props) => {
             .catch((err) => console.log(err))
     }
     const get_car_models = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-model`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-model`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -87,7 +87,7 @@ const GetCarOption = (props) => {
     }
 
     const get_car_price = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-price`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-price`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -100,7 +100,7 @@ const GetCarOption = (props) => {
     }
 
     const get_car_license_plate = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-license-plate`,
+        await axiosPrivate.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/oauth/car-license-plate`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
