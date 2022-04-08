@@ -1,0 +1,13 @@
+.BTNManage {
+  background-color: #ff9e1b !important;
+  color: #fff;
+  border: none;
+}
+
+.BTNUpdate {
+  background-color: #ffc107 !important;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
