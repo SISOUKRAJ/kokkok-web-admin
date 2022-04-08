@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react"
 import { Row, Col, Form, Input, Select, DatePicker, Button } from "antd"
 import { Link } from "react-router-dom";
 import { ScreenContext } from "../../../views/context";
+
 import { DriverOptionContext } from "../../context/getDriver";
 import TableDrivers from "../table";
-
+import Modal from '../Manger/index'
 const FilterData = () => {
     const { setScreen } = useContext(ScreenContext);
     const { drivers } = useContext(DriverOptionContext);
@@ -66,8 +67,10 @@ const FilterData = () => {
                             // onClick={() => setScreen("register")}
                             >
                                 Register
-                            </Button>
+                            </Button > 
                         </Link>
+                        <Modal/>
+                       
                     </div>
                 </Col>
             </Row>

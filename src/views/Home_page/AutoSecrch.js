@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
-import {GoogleMap,useLoadScript,Marker,InfoWindow} from '@react-google-maps/api'
+import {GoogleMap,useLoadScript,Marker,InfoWindow,BicyclingLayer} from '@react-google-maps/api'
 import MapStyle from './mapStyle'
 import logo from './kokok_256x256-01.png'
 import { formatRelative } from 'date-fns'
@@ -65,13 +65,18 @@ if(!isLoaded)return "Loading MAps";
         <h3>MapPoint</h3>
         
 <Search />
+
+
 <PlacesAutocomplete/>
+
+
 <GoogleMap mapContainerStyle={mapContainerStyle}
 zoom={9}
 center={center}
 options={options}
-onClick={onMapCilck}
+onClick={onMapCilck}  
 >
+
 {markers.map((marker)=>(
     <Marker key={marker.time.toISOString()}
      position={{lat:marker.lat,lng:marker.lng}}
@@ -103,6 +108,7 @@ onClick={onMapCilck}
 </div>
 
 </InfoWindow>):null}
+<BicyclingLayer autoUpdate />
 </GoogleMap>
     </div>
 

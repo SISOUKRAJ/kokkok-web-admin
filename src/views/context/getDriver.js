@@ -5,7 +5,7 @@ export const DriverOptionContext = createContext({ drivers: [] });
 
 const GetDriver = (props) => {
     const [drivers, setDrivers] = useState([]);
-
+    const [driverId,setDriverId]=useState('')
     const get_drivers = async () => {
         await axios.get(`${process.env.REACT_APP_API_URL_V1}/api/v1/admin/driver`,
             {
@@ -26,7 +26,7 @@ const GetDriver = (props) => {
     return (
         <div>
             <DriverOptionContext.Provider
-                value={{ drivers }}
+                value={{ drivers,setDriverId,driverId }}
             >
                 {props.children}
             </DriverOptionContext.Provider>
