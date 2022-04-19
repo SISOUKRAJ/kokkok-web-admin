@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Tabs ,Button,Modal} from 'antd';
 import DocumentType from './DocumentType/index'
 import DriverType from './driverType/index'
+import { QueryClient,QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient()
+
 const { TabPane } = Tabs;
 
 export default class index extends Component {
@@ -17,8 +20,10 @@ export default class index extends Component {
           }
           
             const Demo = () => (
+
+
                 <Tabs defaultActiveKey="1" onChange={callback}>
-                  <TabPane tab="Document Type 1" key="1">
+                  <TabPane tab="Document Type" key="1">
 
 <DocumentType/>
                   </TabPane>
@@ -63,13 +68,18 @@ export default class index extends Component {
       }
  
     return (
+
+                <QueryClientProvider client={queryClient}>
+
       <div>
-          
+
    
 <App/>
 
 
-      </div>
+
+      </div></QueryClientProvider>
+
     )
   }
 }

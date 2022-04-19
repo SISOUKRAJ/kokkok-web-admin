@@ -10,3 +10,9 @@ thead.ant-table-thead > tr > th {
   justify-content: center;
   align-items: center;
 }
+.rcorners1 {
+  border-radius: 25px;
+  background: #00ff00;
+  width: 20px;
+  height: 20px;
+}

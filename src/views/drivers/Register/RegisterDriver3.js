@@ -11,6 +11,7 @@ import {
   Select,
   Upload,
   Button,
+  Table,
 } from "antd";
 import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
 import moment from "moment";
@@ -50,10 +51,11 @@ export default class RegisterDriver1 extends Component {
       const { data, error, isError, isLoading } = useQuery("post", fetchPosts1);
 
       const [dataDriverType, setDatadrivetype] = React.useState([]);
+      const [feeDriver, setFeeDriver] = React.useState([]);
 
       async function fetchPosts1() {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_API_URL_V1}/api/v1/driver-type`,
+          `${process.env.REACT_APP_API_URL_V1}/api/v1/admin/fees/driver?driver_id=`+driver_id,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -61,9 +63,55 @@ export default class RegisterDriver1 extends Component {
           }
         );
      
-        return setDatadrivetype(data.data);
+        return setFeeDriver(data.data);
       }
+      const dataSource =  feeDriver.map((item, index) => {
 
+        return {
+          id:item.id,
+          fee:item.fee,
+          register_date:item.register_date,
+
+          expired_date:item.expired_date,
+        }
+  
+        })
+    
+      const columns = [
+        { 
+          title:"ID",
+      dataIndex:"id",
+    key:"id",
+    }, 
+     { 
+      title:"Fee",
+  dataIndex:"fee",
+key:"fee",
+}, 
+ { 
+  title:"Register Date",
+dataIndex:"register_date",
+key:"register_date",
+render:text=>
+<>
+    <div className="tableBirthday">
+            {moment(text).format("DD/MM/YYYY HH:MM:SS")}
+        </div>
+</>,
+},
+  { 
+  title:"Expired Date",
+dataIndex:"expired_date",
+key:"expired_date",
+render:text=>
+<>
+    <div className="tableBirthday">
+            {moment(text).format("DD/MM/YYYY HH:MM:SS")}
+        </div>
+</>,
+
+    }
+      ];
 
       const onFinish = async (values) => {
         const body = {
@@ -94,16 +142,18 @@ console.log(body)
         <div>
           <h2 className="registerTitle">Fee </h2>
 
-          <Form layout="vertical" onFinish={onFinish}>
+       
             <Row>
 
-              <Col md={8} className="inputSection">
+              <Col span={17} className="inputSection">
+              <Table dataSource={dataSource} columns={columns} scroll={{ y: 300 }} pagination={{ pageSize: 5 }} />
 
               </Col>
+<Col  span={1} className="inputSection">
+</Col>
 
-
-              <Col md={8} className="inputSection">
-                            
+              <Col span={5} className="inputSection">
+                   <Form layout="vertical" onFinish={onFinish}>            
               {user_form_left.map((item, index) =>
                   item.type === "text" ? (
                     <Form.Item
@@ -134,10 +184,8 @@ console.log(body)
                   
                   
                   }
-              </Col>
 
-              <Col md={8} className="inputSection">
-                <Button
+                     <Button
                   type="primary"
                   htmlType="submit"
                   className="BTNRegister"
@@ -145,13 +193,13 @@ console.log(body)
                 >
                   Fee
                 </Button>
-              
-           
-              
-           
+                </Form>
               </Col>
+
+             
+             
             </Row>
-          </Form>
+         
         </div>
       );
     };

@@ -29,11 +29,22 @@ const tableDrivers = (props) => {
             phone: item.phone,
             birthday: item.birthday,
             profile_image: item.profile_image,
-            
-        }
+usertype:item.driver_type.driver_type_name,
+car_brand:item.car.car_brand.name,
+car_modal:item.car.car_model.name,
+car_type:item.car.car_type.name,
+car_license_plate_number:item.car.license_plate.number,
+
+car_license_plate_word:item.car.license_plate.word,
+
+car_license_plate_province:item.car.license_plate.province,
+
+registrationdate:item.created_at,
+is_online:item.is_online,
+        }   
     })
     // console.log("aa", data);
-
+const style="00ff00"
     const columns = [
 
         {
@@ -76,8 +87,21 @@ const tableDrivers = (props) => {
         },
         {
             title: 'User Type',
-            dataIndex: '',
-            key: 'name',
+            dataIndex: 'usertype',
+            key: 'usertype',
+            render:(text,driver)=>
+            <>
+            <div className="tableName">
+{text}<br/>
+{driver.car_brand}
+{driver.car_modal}
+{driver.car_type}<br/>
+{driver.car_license_plate_number}
+{driver.car_license_plate_word}<br/>
+{driver.car_license_plate_province}
+
+            </div>
+            </>
         },
         {
             title: 'Rating',
@@ -92,8 +116,14 @@ const tableDrivers = (props) => {
         },
         {
             title: 'Registration Date',
-            dataIndex: '',
-            key: 'name',
+            dataIndex: 'registrationdate',
+            key: 'registrationdate',
+            render:text=>
+            <>
+                <div className="tableBirthday">
+                        {moment(text).format("DD/MM/YYYY HH:MM:SS")}
+                    </div>
+            </>,
         },
         {
             title: 'Expire Date',
@@ -102,8 +132,17 @@ const tableDrivers = (props) => {
         },
         {
             title: 'Status',
-            dataIndex: '',
-            key: 'address',
+            dataIndex: 'is_online',
+            key: 'is_online',
+            render:text=>
+            <>
+            
+       <div className={style}>
+
+       </div>
+                
+             
+            </>
         },
         {
             title: 'operation',

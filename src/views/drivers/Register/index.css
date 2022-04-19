@@ -38,3 +38,8 @@ text-align: left;
 
 
 }
+thead.ant-table-thead > tr > th {
+  background-color: #ff9e1b !important;
+  color: white;
+  text-align: center;
+}

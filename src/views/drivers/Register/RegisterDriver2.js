@@ -13,6 +13,7 @@ import {
   Select,
   Upload,
   Button,
+  Table,
 } from "antd";
 import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
 import { serialize } from 'object-to-formdata';
@@ -23,11 +24,56 @@ export default class RegisterDriver2 extends Component {
   render() {
     let [driver_id, setDriver_id] = this.context;
 
+
     const RegisterDriver = () => {
       const [docsType, setDocsType] = React.useState([]);
       const { data, error, isError, isLoading } = useQuery("post", fetchPosts2);
+      
+  const { data1, error1, isError1, isLoading1 } = useQuery("docDriver", fetchDocDriver);
+ const [docDriver, setdocDriver] = React.useState([]);
+
       const form = React.useRef();
       const file = React.useRef();
+
+async function fetchDocDriver() {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL_V1}/api/v1/admin/driver/docs/`+driver_id,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        return setdocDriver(data.data);
+      }
+        const dataSource =  docDriver.map((item, index) => {
+
+        return {
+          id:item.id,
+        
+          
+        }
+
+        })
+    
+    const columns = [
+      { 
+        title:"ID",
+    dataIndex:"id",
+  key:"id",
+},
+  
+      {
+          title: 'operation',
+          dataIndex: '',
+          key: 'button',
+          render: (text, docsType) =>
+              <div className="operationBox">
+
+</div>
+
+}
+    ];
 
 
       const options = {
@@ -179,9 +225,11 @@ console.log(form.current)
                        <Form  layout="vertical" onFinish={onFinish}  ref={form}>
 
             <Row>
+
               <Col md={8} className="inputSection">
 
-             
+              <Table dataSource={dataSource} columns={columns} scroll={{ y: 300 }} pagination={{ pageSize: 5 }} />
+
 
               </Col>
 
